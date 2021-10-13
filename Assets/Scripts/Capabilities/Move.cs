@@ -7,7 +7,7 @@ public class Move : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
     [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
 
-    private Vector2 playerInput;
+    private Vector2 direction;
     private Vector3 desiredVelocity;
     private Vector3 velocity;
     private Rigidbody2D body;
@@ -25,8 +25,8 @@ public class Move : MonoBehaviour
 
     private void Update()
     {
-        playerInput.x = input.RetrieveMoveInput();
-        desiredVelocity = new Vector3(playerInput.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
+        direction.x = input.RetrieveMoveInput();
+        desiredVelocity = new Vector3(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
     }
 
     private void FixedUpdate()
