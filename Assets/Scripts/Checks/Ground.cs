@@ -48,10 +48,8 @@ public class Ground : MonoBehaviour
     {
         return onGround;
     }
-
     public float GetFriction()
     {
         return friction;
     }
-
 }
