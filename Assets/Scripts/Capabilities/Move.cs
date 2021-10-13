@@ -3,9 +3,9 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [SerializeField] private InputController input = null;
-    [SerializeField, Range(0f, 100f)] private float maxSpeed = 10f;
-    [SerializeField, Range(0f, 100f)] private float maxAcceleration = 10f;
-    [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 1f;
+    [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
+    [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
+    [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
 
     private Vector2 playerInput;
     private Vector3 desiredVelocity;

@@ -3,6 +3,10 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     [SerializeField] private InputController input = null;
+    [SerializeField, Range(0f, 10f)] private float jumpHeight = 3f;
+    [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
+    [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
+    [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
 
     private Rigidbody2D body;
     private Ground ground;
@@ -14,10 +18,6 @@ public class Jump : MonoBehaviour
     private bool desiredJump;
     private bool onGround;
 
-    [SerializeField, Range(0f, 10f)] private float jumpHeight = 2f;
-    [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
-    [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 1f;
-    [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1f;
 
     // Start is called before the first frame update
     void Awake()
