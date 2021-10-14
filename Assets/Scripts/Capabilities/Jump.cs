@@ -50,13 +50,13 @@ public class Jump : MonoBehaviour
             JumpAction();
         }
 
-        if (body.velocity.y < 0)
-        {
-            body.gravityScale = downwardMovementMultiplier;
-        }
-        else if(body.velocity.y > 0)
+        if (body.velocity.y > 0)
         {
             body.gravityScale = upwardMovementMultiplier;
+        }
+        else if (body.velocity.y < 0)
+        {
+            body.gravityScale = downwardMovementMultiplier;
         }
         else if(body.velocity.y == 0)
         {
