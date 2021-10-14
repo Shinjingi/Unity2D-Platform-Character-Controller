@@ -10,7 +10,7 @@ public class Jump : MonoBehaviour
 
     private Rigidbody2D body;
     private Ground ground;
-    private Vector3 velocity;
+    private Vector2 velocity;
 
     private int jumpPhase;
     private float defaultGravityScale;
