@@ -2,14 +2,15 @@ using UnityEngine;
 
 namespace Shinjingi
 {
+    [RequireComponent(typeof(Controller))]
     public class Jump : MonoBehaviour
     {
-        [SerializeField] private Controller controller = null;
         [SerializeField, Range(0f, 10f)] private float jumpHeight = 3f;
         [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
         [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
 
+        private Controller controller;
         private Rigidbody2D body;
         private Ground ground;
         private Vector2 velocity;
@@ -26,6 +27,7 @@ namespace Shinjingi
         {
             body = GetComponent<Rigidbody2D>();
             ground = GetComponent<Ground>();
+            controller = GetComponent<Controller>();
 
             defaultGravityScale = 1f;
         }

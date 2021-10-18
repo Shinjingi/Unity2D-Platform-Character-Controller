@@ -2,13 +2,14 @@ using UnityEngine;
 
 namespace Shinjingi
 {
+    [RequireComponent(typeof(Controller))]
     public class Move : MonoBehaviour
     {
-        [SerializeField] private Controller controller = null;
         [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
         [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
         [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
 
+        private Controller controller;
         private Vector2 direction;
         private Vector2 desiredVelocity;
         private Vector2 velocity;
@@ -23,6 +24,7 @@ namespace Shinjingi
         {
             body = GetComponent<Rigidbody2D>();
             ground = GetComponent<Ground>();
+            controller = GetComponent<Controller>();
         }
 
         private void Update()
