@@ -1,15 +1,18 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerController", menuName = "InputController/PlayerController")]
-public class PlayerController : InputController
+namespace Shinjingi
 {
-    public override bool RetrieveJumpInput()
+    [CreateAssetMenu(fileName = "PlayerController", menuName = "InputController/PlayerController")]
+    public class PlayerController : InputController
     {
-        return Input.GetButtonDown("Jump");
-    }
+        public override bool RetrieveJumpInput()
+        {
+            return Input.GetButtonDown("Jump");
+        }
 
-    public override float RetrieveMoveInput()
-    {
-        return Input.GetAxisRaw("Horizontal");
+        public override float RetrieveMoveInput()
+        {
+            return Input.GetAxisRaw("Horizontal");
+        }
     }
 }

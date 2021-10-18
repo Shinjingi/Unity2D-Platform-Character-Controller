@@ -1,85 +1,89 @@
 using UnityEngine;
 
-public class Jump : MonoBehaviour
+namespace Shinjingi
 {
-    [SerializeField] private InputController input = null;
-    [SerializeField, Range(0f, 10f)] private float jumpHeight = 3f;
-    [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
-    [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
-    [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
-
-    private Rigidbody2D body;
-    private Ground ground;
-    private Vector2 velocity;
-
-    private int jumpPhase;
-    private float defaultGravityScale;
-
-    private bool desiredJump;
-    private bool onGround;
-
-
-    // Start is called before the first frame update
-    void Awake()
+    public class Jump : MonoBehaviour
     {
-        body = GetComponent<Rigidbody2D>();
-        ground = GetComponent<Ground>();
+        [SerializeField] private InputController input = null;
+        [SerializeField, Range(0f, 10f)] private float jumpHeight = 3f;
+        [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
+        [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
+        [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
 
-        defaultGravityScale = 1f;
-    }
+        private Rigidbody2D body;
+        private Ground ground;
+        private Vector2 velocity;
 
-    // Update is called once per frame
-    void Update()
-    {
-        desiredJump |= input.RetrieveJumpInput();
-    }
+        private int jumpPhase;
+        private float defaultGravityScale;
 
-    private void FixedUpdate()
-    {
-        onGround = ground.GetOnGround();
-        velocity = body.velocity;
+        private bool desiredJump;
+        private bool onGround;
 
-        if (onGround)
+
+        // Start is called before the first frame update
+        void Awake()
         {
-            jumpPhase = 0;
+            body = GetComponent<Rigidbody2D>();
+            ground = GetComponent<Ground>();
+
+            defaultGravityScale = 1f;
         }
 
-        if (desiredJump)
+        // Update is called once per frame
+        void Update()
         {
-            desiredJump = false;
-            JumpAction();
+            desiredJump |= input.RetrieveJumpInput();
         }
 
-        if (body.velocity.y > 0)
+        private void FixedUpdate()
         {
-            body.gravityScale = upwardMovementMultiplier;
-        }
-        else if (body.velocity.y < 0)
-        {
-            body.gravityScale = downwardMovementMultiplier;
-        }
-        else if(body.velocity.y == 0)
-        {
-            body.gravityScale = defaultGravityScale;
-        }
+            onGround = ground.GetOnGround();
+            velocity = body.velocity;
 
-        body.velocity = velocity;
-    }
-    private void JumpAction()
-    {
-        if (onGround || jumpPhase < maxAirJumps)
-        {
-            jumpPhase += 1;
-            float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
-            if (velocity.y > 0f)
+            if (onGround)
             {
-                jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+                jumpPhase = 0;
             }
-            else if (velocity.y < 0f)
+
+            if (desiredJump)
             {
-                jumpSpeed += Mathf.Abs(body.velocity.y);
+                desiredJump = false;
+                JumpAction();
             }
-            velocity.y += jumpSpeed;
+
+            if (body.velocity.y > 0)
+            {
+                body.gravityScale = upwardMovementMultiplier;
+            }
+            else if (body.velocity.y < 0)
+            {
+                body.gravityScale = downwardMovementMultiplier;
+            }
+            else if(body.velocity.y == 0)
+            {
+                body.gravityScale = defaultGravityScale;
+            }
+
+            body.velocity = velocity;
+        }
+        private void JumpAction()
+        {
+            if (onGround || jumpPhase < maxAirJumps)
+            {
+                jumpPhase += 1;
+                float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
+                if (velocity.y > 0f)
+                {
+                    jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+                }
+                else if (velocity.y < 0f)
+                {
+                    jumpSpeed += Mathf.Abs(body.velocity.y);
+                }
+                velocity.y += jumpSpeed;
+            }
         }
     }
 }
+
