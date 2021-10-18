@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 876415943}
   - component: {fileID: 876415949}
   - component: {fileID: 876415950}
+  - component: {fileID: 876415952}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -242,7 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61068da20533d5418b1b22ca9b86571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: dc54f7c808283ad4ba19bfdb449894e8, type: 2}
   maxSpeed: 4
   maxAcceleration: 35
   maxAirAcceleration: 20
@@ -464,7 +464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6024d288a0a545546b434323e73d10e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: dc54f7c808283ad4ba19bfdb449894e8, type: 2}
   jumpHeight: 3
   maxAirJumps: 0
   downwardMovementMultiplier: 3
@@ -507,6 +506,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.98}
   m_EdgeRadius: 0
+--- !u!114 &876415952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876415942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429448dce0a73c245adbf32c0da2a52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: dc54f7c808283ad4ba19bfdb449894e8, type: 2}
 --- !u!1 &1240706001
 GameObject:
   m_ObjectHideFlags: 0
