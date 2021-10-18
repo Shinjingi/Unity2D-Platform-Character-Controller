@@ -4,7 +4,7 @@ namespace Shinjingi
 {
     public class Move : MonoBehaviour
     {
-        [SerializeField] private InputController input = null;
+        [SerializeField] private Controller controller = null;
         [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
         [SerializeField, Range(0f, 100f)] private float maxAcceleration = 35f;
         [SerializeField, Range(0f, 100f)] private float maxAirAcceleration = 20f;
@@ -27,7 +27,7 @@ namespace Shinjingi
 
         private void Update()
         {
-            direction.x = input.RetrieveMoveInput();
+            direction.x = controller.input.RetrieveMoveInput();
             desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
         }
 

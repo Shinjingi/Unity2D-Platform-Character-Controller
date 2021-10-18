@@ -4,7 +4,7 @@ namespace Shinjingi
 {
     public class Jump : MonoBehaviour
     {
-        [SerializeField] private InputController input = null;
+        [SerializeField] private Controller controller = null;
         [SerializeField, Range(0f, 10f)] private float jumpHeight = 3f;
         [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
         [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
@@ -33,7 +33,7 @@ namespace Shinjingi
         // Update is called once per frame
         void Update()
         {
-            desiredJump |= input.RetrieveJumpInput();
+            desiredJump |= controller.input.RetrieveJumpInput();
         }
 
         private void FixedUpdate()
