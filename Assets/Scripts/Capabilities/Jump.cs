@@ -5,85 +5,86 @@ namespace Shinjingi
     [RequireComponent(typeof(Controller))]
     public class Jump : MonoBehaviour
     {
-        [SerializeField, Range(0f, 10f)] private float jumpHeight = 3f;
-        [SerializeField, Range(0, 5)] private int maxAirJumps = 0;
-        [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
-        [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 1.7f;
+        [SerializeField, Range(0f, 10f)] private float _jumpHeight = 3f;
+        [SerializeField, Range(0, 5)] private int _maxAirJumps = 0;
+        [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
+        [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
 
-        private Controller controller;
-        private Rigidbody2D body;
-        private Ground ground;
-        private Vector2 velocity;
+        private Controller _controller;
+        private Rigidbody2D _body;
+        private Ground _ground;
+        private Vector2 _velocity;
 
-        private int jumpPhase;
-        private float defaultGravityScale;
+        private int _jumpPhase;
+        private float _defaultGravityScale, _jumpSpeed;
 
-        private bool desiredJump;
-        private bool onGround;
+        private bool _desiredJump, _onGround;
 
 
         // Start is called before the first frame update
         void Awake()
         {
-            body = GetComponent<Rigidbody2D>();
-            ground = GetComponent<Ground>();
-            controller = GetComponent<Controller>();
+            _body = GetComponent<Rigidbody2D>();
+            _ground = GetComponent<Ground>();
+            _controller = GetComponent<Controller>();
 
-            defaultGravityScale = 1f;
+            _defaultGravityScale = 1f;
         }
 
         // Update is called once per frame
         void Update()
         {
-            desiredJump |= controller.input.RetrieveJumpInput();
+            _desiredJump |= _controller.input.RetrieveJumpInput();
         }
 
         private void FixedUpdate()
         {
-            onGround = ground.GetOnGround();
-            velocity = body.velocity;
+            _onGround = _ground.OnGround;
+            _velocity = _body.velocity;
 
-            if (onGround)
+            if (_onGround)
             {
-                jumpPhase = 0;
+                _jumpPhase = 0;
             }
 
-            if (desiredJump)
+            if (_desiredJump)
             {
-                desiredJump = false;
+                _desiredJump = false;
                 JumpAction();
             }
 
-            if (body.velocity.y > 0)
+            if (_body.velocity.y > 0)
             {
-                body.gravityScale = upwardMovementMultiplier;
+                _body.gravityScale = _upwardMovementMultiplier;
             }
-            else if (body.velocity.y < 0)
+            else if (_body.velocity.y < 0)
             {
-                body.gravityScale = downwardMovementMultiplier;
+                _body.gravityScale = _downwardMovementMultiplier;
             }
-            else if(body.velocity.y == 0)
+            else if(_body.velocity.y == 0)
             {
-                body.gravityScale = defaultGravityScale;
+                _body.gravityScale = _defaultGravityScale;
             }
 
-            body.velocity = velocity;
+            _body.velocity = _velocity;
         }
         private void JumpAction()
         {
-            if (onGround || jumpPhase < maxAirJumps)
+            if (_onGround || _jumpPhase < _maxAirJumps)
             {
-                jumpPhase += 1;
-                float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
-                if (velocity.y > 0f)
+                _jumpPhase += 1;
+                
+                _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
+                
+                if (_velocity.y > 0f)
                 {
-                    jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+                    _jumpSpeed = Mathf.Max(_jumpSpeed - _velocity.y, 0f);
                 }
-                else if (velocity.y < 0f)
+                else if (_velocity.y < 0f)
                 {
-                    jumpSpeed += Mathf.Abs(body.velocity.y);
+                    _jumpSpeed += Mathf.Abs(_body.velocity.y);
                 }
-                velocity.y += jumpSpeed;
+                _velocity.y += _jumpSpeed;
             }
         }
     }
