@@ -10,6 +10,7 @@ namespace Shinjingi
         [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
         [SerializeField, Range(0f, 0.3f)] private float _coyoteTime = 0.2f;
+        [SerializeField, Range(0f, 0.3f)] private float _jumpBufferTime = 0.2f;
 
         private Controller _controller;
         private Rigidbody2D _body;
@@ -17,7 +18,7 @@ namespace Shinjingi
         private Vector2 _velocity;
 
         private int _jumpPhase;
-        private float _defaultGravityScale, _jumpSpeed, _coyoteCounter;
+        private float _defaultGravityScale, _jumpSpeed, _coyoteCounter, _jumpBufferCounter;
 
         private bool _desiredJump, _onGround, _isJumping;
 
@@ -57,6 +58,15 @@ namespace Shinjingi
             if (_desiredJump)
             {
                 _desiredJump = false;
+                _jumpBufferCounter = _jumpBufferTime;
+            }
+            else if(!_desiredJump && _jumpBufferCounter > 0)
+            {
+                _jumpBufferCounter -= Time.deltaTime;
+            }
+
+            if(_jumpBufferCounter > 0)
+            {
                 JumpAction();
             }
 
@@ -84,6 +94,7 @@ namespace Shinjingi
                     _jumpPhase += 1;
                 }
 
+                _jumpBufferCounter = 0;
                 _coyoteCounter = 0;
                 _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
                 _isJumping = true;
