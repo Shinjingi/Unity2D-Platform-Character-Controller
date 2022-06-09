@@ -53,11 +53,11 @@ namespace Shinjingi
                 JumpAction();
             }
 
-            if (_body.velocity.y > 0)
+            if (_controller.input.RetrieveJumpHoldInput() && _body.velocity.y > 0)
             {
                 _body.gravityScale = _upwardMovementMultiplier;
             }
-            else if (_body.velocity.y < 0)
+            else if (!_controller.input.RetrieveJumpHoldInput() || _body.velocity.y < 0)
             {
                 _body.gravityScale = _downwardMovementMultiplier;
             }
