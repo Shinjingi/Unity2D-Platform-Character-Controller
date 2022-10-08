@@ -14,7 +14,7 @@ namespace Shinjingi
 
         private Controller _controller;
         private Rigidbody2D _body;
-        private Ground _ground;
+        private CollisionDataRetriever _ground;
         private Vector2 _velocity;
 
         private int _jumpPhase;
@@ -27,7 +27,7 @@ namespace Shinjingi
         void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
-            _ground = GetComponent<Ground>();
+            _ground = GetComponent<CollisionDataRetriever>();
             _controller = GetComponent<Controller>();
 
             _defaultGravityScale = 1f;

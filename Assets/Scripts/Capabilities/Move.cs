@@ -12,7 +12,7 @@ namespace Shinjingi
         private Controller _controller;
         private Vector2 _direction, _desiredVelocity, _velocity;
         private Rigidbody2D _body;
-        private Ground _ground;
+        private CollisionDataRetriever _ground;
 
         private float _maxSpeedChange, _acceleration;
         private bool _onGround;
@@ -20,7 +20,7 @@ namespace Shinjingi
         private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
-            _ground = GetComponent<Ground>();
+            _ground = GetComponent<CollisionDataRetriever>();
             _controller = GetComponent<Controller>();
         }
 
