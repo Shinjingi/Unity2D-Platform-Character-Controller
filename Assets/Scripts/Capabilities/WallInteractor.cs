@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Shinjingi
 {
+    [RequireComponent(typeof(Controller))]
     public class WallInteractor : MonoBehaviour
     {
         public bool WallJumping { get; private set; }
