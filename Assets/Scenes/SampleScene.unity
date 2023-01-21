@@ -607,7 +607,6 @@ MonoBehaviour:
   _maxSpeed: 4
   _maxAcceleration: 35
   _maxAirAcceleration: 20
-  _wallStickTime: 0.25
 --- !u!96 &876415944
 TrailRenderer:
   serializedVersion: 2
@@ -902,6 +901,7 @@ MonoBehaviour:
   _wallJumpClimb: {x: 4, y: 12}
   _wallJumpBounce: {x: 10.7, y: 10}
   _wallJumpLeap: {x: 14, y: 12}
+  _wallStickTime: 0.25
 --- !u!1 &1029099348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1210,7 @@ MonoBehaviour:
   _wallJumpClimb: {x: 4, y: 12}
   _wallJumpBounce: {x: 10.7, y: 10}
   _wallJumpLeap: {x: 14, y: 12}
+  _wallStickTime: 0.25
 --- !u!114 &1122733749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1269,6 @@ MonoBehaviour:
   _maxSpeed: 4
   _maxAcceleration: 35
   _maxAirAcceleration: 20
-  _wallStickTime: 0.25
 --- !u!96 &1122733753
 TrailRenderer:
   serializedVersion: 2
