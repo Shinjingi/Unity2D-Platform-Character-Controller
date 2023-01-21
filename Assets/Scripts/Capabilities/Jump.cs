@@ -96,7 +96,7 @@ namespace Shinjingi
 
                 _jumpBufferCounter = 0;
                 _coyoteCounter = 0;
-                _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
+                _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight * _upwardMovementMultiplier);
                 _isJumping = true;
                 
                 if (_velocity.y > 0f)
