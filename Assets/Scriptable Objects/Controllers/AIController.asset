@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f0b751fda3a30418be66ba33b575fc, type: 3}
   m_Name: AIController
   m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _bottomDistance: 1
+  _topDistance: 1
+  _xOffset: 1
