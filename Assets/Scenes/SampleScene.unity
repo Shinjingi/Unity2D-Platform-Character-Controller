@@ -580,10 +580,10 @@ GameObject:
   - component: {fileID: 876415947}
   - component: {fileID: 876415951}
   - component: {fileID: 876415944}
-  - component: {fileID: 876415943}
-  - component: {fileID: 876415949}
   - component: {fileID: 876415952}
   - component: {fileID: 876415950}
+  - component: {fileID: 876415943}
+  - component: {fileID: 876415949}
   - component: {fileID: 876415953}
   m_Layer: 0
   m_Name: Character
