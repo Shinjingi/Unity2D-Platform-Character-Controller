@@ -13,14 +13,17 @@ namespace Shinjingi
         [SerializeField] private Vector2 _wallJumpClimb = new Vector2(4f, 12f);
         [SerializeField] private Vector2 _wallJumpBounce = new Vector2(10.7f, 10f);
         [SerializeField] private Vector2 _wallJumpLeap = new Vector2(14f, 12f);
-        
+        [Header("Wall Stick")]
+        [SerializeField, Range(0.05f, 0.5f)] private float _wallStickTime = 0.25f;
+
+
         private CollisionDataRetriever _collisionDataRetriever;
         private Rigidbody2D _body;
         private Controller _controller;
 
         private Vector2 _velocity;
         private bool _onWall, _onGround, _desiredJump;
-        private float _wallDirectionX;
+        private float _wallDirectionX, _wallStickCounter;
 
         // Start is called before the first frame update
         void Start()
@@ -56,9 +59,32 @@ namespace Shinjingi
             }
             #endregion
 
+            #region Wall Stick
+            if (_collisionDataRetriever.OnWall && !_collisionDataRetriever.OnGround && !WallJumping)
+            {
+                if (_wallStickCounter > 0)
+                {
+                    _velocity.x = 0;
+
+                    if (_controller.input.RetrieveMoveInput() == _collisionDataRetriever.ContactNormal.x)
+                    {
+                        _wallStickCounter -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        _wallStickCounter = _wallStickTime;
+                    }
+                }
+                else
+                {
+                    _wallStickCounter = _wallStickTime;
+                }
+            }
+            #endregion
+
             #region Wall Jump
 
-            if((_onWall && _velocity.x == 0) || _onGround)
+            if ((_onWall && _velocity.x == 0) || _onGround)
             {
                 WallJumping = false;
             }
