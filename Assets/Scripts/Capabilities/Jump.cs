@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Shinjingi
 {
-    [RequireComponent(typeof(Controller))]
+    [RequireComponent(typeof(Controller), typeof(CollisionDataRetriever), typeof(Rigidbody2D))]
     public class Jump : MonoBehaviour
     {
         [SerializeField, Range(0f, 10f)] private float _jumpHeight = 3f;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Shinjingi
 {
-    [RequireComponent(typeof(Controller))]
+    [RequireComponent(typeof(Controller), typeof(CollisionDataRetriever), typeof(Rigidbody2D))]
     public class WallInteractor : MonoBehaviour
     {
         public bool WallJumping { get; private set; }

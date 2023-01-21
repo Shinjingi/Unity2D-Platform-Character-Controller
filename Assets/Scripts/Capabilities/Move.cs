@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Shinjingi
 {
-    [RequireComponent(typeof(Controller))]
+    [RequireComponent(typeof(Controller), typeof(CollisionDataRetriever), typeof(Rigidbody2D))]
     public class Move : MonoBehaviour
     {
         [SerializeField, Range(0f, 100f)] private float _maxSpeed = 4f;
