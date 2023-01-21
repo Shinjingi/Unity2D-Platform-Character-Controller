@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 105490806}
   - component: {fileID: 105490805}
   - component: {fileID: 105490804}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 381002287}
   - component: {fileID: 381002286}
   - component: {fileID: 381002285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform Fast Top Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 1029099351}
   - component: {fileID: 1029099350}
   - component: {fileID: 1029099349}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 1044355732}
   - component: {fileID: 1044355731}
   - component: {fileID: 1044355730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wall Leap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1516,7 +1516,7 @@ GameObject:
   - component: {fileID: 1240706002}
   - component: {fileID: 1240706005}
   - component: {fileID: 1240706004}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform Slow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1649,7 +1649,7 @@ GameObject:
   - component: {fileID: 1585418460}
   - component: {fileID: 1585418459}
   - component: {fileID: 1585418458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform Fast Top Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1782,7 +1782,7 @@ GameObject:
   - component: {fileID: 1708283498}
   - component: {fileID: 1708283497}
   - component: {fileID: 1708283496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform Fast Above
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1915,7 +1915,7 @@ GameObject:
   - component: {fileID: 2132315538}
   - component: {fileID: 2132315537}
   - component: {fileID: 2132315536}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform Fast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
