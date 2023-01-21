@@ -5,17 +5,17 @@ namespace Shinjingi
     [CreateAssetMenu(fileName = "EmptyController", menuName = "InputController/EmptyController")]
     public class EmptyController : InputController
     {
-        public override bool RetrieveJumpHoldInput()
+        public override bool RetrieveJumpHoldInput(GameObject gameObject)
         {
             return false;
         }
 
-        public override bool RetrieveJumpInput()
+        public override bool RetrieveJumpInput(GameObject gameObject)
         {
             return false;
         }
 
-        public override float RetrieveMoveInput()
+        public override float RetrieveMoveInput(GameObject gameObject)
         {
             return 0;
         }

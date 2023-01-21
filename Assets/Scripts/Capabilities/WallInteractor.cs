@@ -38,7 +38,7 @@ namespace Shinjingi
         {
             if(_onWall && !_onGround)
             {
-                _desiredJump |= _controller.input.RetrieveJumpInput();
+                _desiredJump |= _controller.input.RetrieveJumpInput(this.gameObject);
             }
         }
 
@@ -66,7 +66,7 @@ namespace Shinjingi
                 {
                     _velocity.x = 0;
 
-                    if (_controller.input.RetrieveMoveInput() == _collisionDataRetriever.ContactNormal.x)
+                    if (_controller.input.RetrieveMoveInput(this.gameObject) == _collisionDataRetriever.ContactNormal.x)
                     {
                         _wallStickCounter -= Time.deltaTime;
                     }
@@ -91,13 +91,13 @@ namespace Shinjingi
 
             if(_desiredJump)
             {
-                if(-_wallDirectionX == _controller.input.RetrieveMoveInput())
+                if(-_wallDirectionX == _controller.input.RetrieveMoveInput(this.gameObject))
                 {
                     _velocity = new Vector2(_wallJumpClimb.x * _wallDirectionX, _wallJumpClimb.y);
                     WallJumping = true;
                     _desiredJump = false;
                 }
-                else if(_controller.input.RetrieveMoveInput() == 0)
+                else if(_controller.input.RetrieveMoveInput(this.gameObject) == 0)
                 {
                     _velocity = new Vector2(_wallJumpBounce.x * _wallDirectionX, _wallJumpBounce.y);
                     WallJumping = true;
