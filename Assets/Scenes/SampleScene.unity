@@ -830,8 +830,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpHeight: 3
   _maxAirJumps: 0
-  _downwardMovementMultiplier: 3
-  _upwardMovementMultiplier: 1.7
+  _downwardMovementMultiplier: 5
+  _upwardMovementMultiplier: 2
   _coyoteTime: 0.2
   _jumpBufferTime: 0.2
 --- !u!114 &876415950
