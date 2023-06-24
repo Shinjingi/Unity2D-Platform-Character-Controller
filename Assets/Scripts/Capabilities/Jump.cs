@@ -20,7 +20,7 @@ namespace Shinjingi
         private int _jumpPhase;
         private float _defaultGravityScale, _jumpSpeed, _coyoteCounter, _jumpBufferCounter;
 
-        private bool _desiredJump, _onGround, _isJumping;
+        private bool _desiredJump, _onGround, _isJumping, _isJumpReset;
 
 
         // Start is called before the first frame update
@@ -30,13 +30,14 @@ namespace Shinjingi
             _ground = GetComponent<CollisionDataRetriever>();
             _controller = GetComponent<Controller>();
 
+            _isJumpReset = true;
             _defaultGravityScale = 1f;
         }
 
         // Update is called once per frame
         void Update()
         {
-            _desiredJump |= _controller.input.RetrieveJumpInput(this.gameObject);
+            _desiredJump = _controller.input.RetrieveJumpInput(this.gameObject);
         }
 
         private void FixedUpdate()
@@ -55,14 +56,19 @@ namespace Shinjingi
                 _coyoteCounter -= Time.deltaTime;
             }
 
-            if (_desiredJump)
+            if (_desiredJump && _isJumpReset)
             {
+                _isJumpReset = false;
                 _desiredJump = false;
                 _jumpBufferCounter = _jumpBufferTime;
             }
-            else if(!_desiredJump && _jumpBufferCounter > 0)
+            else if(_jumpBufferCounter > 0)
             {
                 _jumpBufferCounter -= Time.deltaTime;
+            }
+            else if(!_desiredJump)
+            {
+                _isJumpReset = true;
             }
 
             if(_jumpBufferCounter > 0)
