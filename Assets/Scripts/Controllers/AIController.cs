@@ -39,10 +39,5 @@ namespace Shinjingi
 
             return gameObject.transform.localScale.x;
         }
-
-        public override bool RetrieveJumpHoldInput(GameObject gameObject)
-        {
-            return false;
-        }
     }
 }

@@ -6,6 +6,5 @@ namespace Shinjingi
     {
         public abstract float RetrieveMoveInput(GameObject gameObject);
         public abstract bool RetrieveJumpInput(GameObject gameObject);
-        public abstract bool RetrieveJumpHoldInput(GameObject gameObject);
     }
 }
