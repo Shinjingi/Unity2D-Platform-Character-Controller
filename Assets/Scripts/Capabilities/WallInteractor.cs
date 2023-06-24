@@ -22,7 +22,7 @@ namespace Shinjingi
         private Controller _controller;
 
         private Vector2 _velocity;
-        private bool _onWall, _onGround, _desiredJump;
+        private bool _onWall, _onGround, _desiredJump, _isJumpReset;
         private float _wallDirectionX, _wallStickCounter;
 
         // Start is called before the first frame update
@@ -31,15 +31,14 @@ namespace Shinjingi
             _collisionDataRetriever = GetComponent<CollisionDataRetriever>();
             _body = GetComponent<Rigidbody2D>();
             _controller = GetComponent<Controller>();
+
+            _isJumpReset = true;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if(_onWall && !_onGround)
-            {
-                _desiredJump |= _controller.input.RetrieveJumpInput(this.gameObject);
-            }
+            _desiredJump = _controller.input.RetrieveJumpInput(this.gameObject);
         }
 
         private void FixedUpdate()
@@ -89,25 +88,36 @@ namespace Shinjingi
                 WallJumping = false;
             }
 
-            if(_desiredJump)
+
+            if (_onWall && !_onGround)
             {
-                if(-_wallDirectionX == _controller.input.RetrieveMoveInput(this.gameObject))
+                if (_desiredJump && _isJumpReset)
                 {
-                    _velocity = new Vector2(_wallJumpClimb.x * _wallDirectionX, _wallJumpClimb.y);
-                    WallJumping = true;
-                    _desiredJump = false;
+                    if (-_wallDirectionX == _controller.input.RetrieveMoveInput(this.gameObject))
+                    {
+                        _velocity = new Vector2(_wallJumpClimb.x * _wallDirectionX, _wallJumpClimb.y);
+                        WallJumping = true;
+                        _desiredJump = false;
+                        _isJumpReset = false;
+                    }
+                    else if (_controller.input.RetrieveMoveInput(this.gameObject) == 0)
+                    {
+                        _velocity = new Vector2(_wallJumpBounce.x * _wallDirectionX, _wallJumpBounce.y);
+                        WallJumping = true;
+                        _desiredJump = false;
+                        _isJumpReset = false;
+                    }
+                    else
+                    {
+                        _velocity = new Vector2(_wallJumpLeap.x * _wallDirectionX, _wallJumpLeap.y);
+                        WallJumping = true;
+                        _desiredJump = false;
+                        _isJumpReset = false;
+                    }
                 }
-                else if(_controller.input.RetrieveMoveInput(this.gameObject) == 0)
+                else if (!_desiredJump)
                 {
-                    _velocity = new Vector2(_wallJumpBounce.x * _wallDirectionX, _wallJumpBounce.y);
-                    WallJumping = true;
-                    _desiredJump = false;
-                }
-                else
-                {
-                    _velocity = new Vector2(_wallJumpLeap.x * _wallDirectionX, _wallJumpLeap.y);
-                    WallJumping = true;
-                    _desiredJump = false;
+                    _isJumpReset = true;
                 }
             }
             #endregion
@@ -118,6 +128,7 @@ namespace Shinjingi
         private void OnCollisionEnter2D(Collision2D collision)
         {
             _collisionDataRetriever.EvaluateCollision(collision);
+            _isJumpReset = false;
 
             if(_collisionDataRetriever.OnWall && !_collisionDataRetriever.OnGround && WallJumping)
             {
